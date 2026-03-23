@@ -9,8 +9,8 @@ export interface IMission {
 }
 
 export interface CreateMission {
-   codename: string;
-   targetName: string;
-   riskLevel: string;
-   startDate: string;
+  codename: string;
+  targetName: string;
+  riskLevel: string;
+  startDate: string;
 }

@@ -30,7 +30,7 @@ export class MissionService {
   findAll() {
     const missions: IMission[] = JSON.parse(
       fs.readFileSync('data/missions.json', 'utf-8'),
-    );
+    ) as IMission[];
 
     return missions.map((mission) => {
       let durationDays: number;

@@ -97,4 +97,25 @@ export class MissionService {
 
     return newMission;
   }
+
+  delete(id: string) {
+    const missions = JSON.parse(
+      fs.readFileSync('data/missions.json', 'utf-8'),
+    ) as IMission[];
+
+    const mission = missions.find((m) => m.id === id);
+
+    if (!mission) {
+      throw new NotFoundException();
+    }
+
+    const updatedMissions = missions.filter((m) => m.id !== id);
+
+    fs.writeFileSync(
+      'data/missions.json',
+      JSON.stringify(updatedMissions, null, 2),
+    );
+
+    return { message: `Mission ID ${id} has been successfully deleted.` };
+  }
 }

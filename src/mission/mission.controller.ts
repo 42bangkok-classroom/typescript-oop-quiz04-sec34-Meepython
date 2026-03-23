@@ -1,7 +1,4 @@
-import {
-  Controller,
-  Get,
-} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { MissionService } from './mission.service';
 @Controller('missions')
 export class MissionController {

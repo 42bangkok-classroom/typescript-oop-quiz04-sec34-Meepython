@@ -72,4 +72,29 @@ export class MissionService {
         isHighRisk && !hasAccess ? '***REDACTED***' : mission.targetName,
     };
   }
+
+  create(body: any) {
+    const missions = JSON.parse(
+      fs.readFileSync('data/missions.json', 'utf-8'),
+    ) as IMission[];
+
+    const lastID = missions[missions.length - 1].id;
+    const newID = (Number(lastID) + 1).toString();
+
+    const newMission: IMission = {
+      id: newID,
+      codename: body.codename,
+      status: body.status || 'ACTIVE',
+      targetName: body.targetName,
+      riskLevel: body.riskLevel,
+      startDate: body.startDate,
+      endDate: body.endDate || null,
+    };
+
+    missions.push(newMission);
+
+    fs.writeFileSync('data/missions.json', JSON.stringify(missions, null, 2));
+
+    return newMission;
+  }
 }

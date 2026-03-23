@@ -8,4 +8,9 @@ export class MissionController {
   getSummary() {
     return this.missionService.getSummary();
   }
+
+  @Get()
+  findAll() {
+    return this.missionService.findAll();
+  }
 }

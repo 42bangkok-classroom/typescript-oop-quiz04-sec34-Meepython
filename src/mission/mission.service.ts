@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { IMission } from './mission.interface';
+import { IMission, CreateMission } from './mission.interface';
 import * as fs from 'fs';
 @Injectable()
 export class MissionService {
@@ -73,7 +73,7 @@ export class MissionService {
     };
   }
 
-  create(body: any) {
+  create(body: CreateMission) {
     const missions = JSON.parse(
       fs.readFileSync('data/missions.json', 'utf-8'),
     ) as IMission[];
@@ -84,11 +84,11 @@ export class MissionService {
     const newMission: IMission = {
       id: newID,
       codename: body.codename,
-      status: body.status || 'ACTIVE',
+      status: 'ACTIVE',
       targetName: body.targetName,
       riskLevel: body.riskLevel,
       startDate: body.startDate,
-      endDate: body.endDate || null,
+      endDate: null,
     };
 
     missions.push(newMission);

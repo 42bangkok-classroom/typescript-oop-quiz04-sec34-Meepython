@@ -98,7 +98,7 @@ export class MissionService {
     return newMission;
   }
 
-  delete(id: string) {
+  remove(id: string) {
     const missions = JSON.parse(
       fs.readFileSync('data/missions.json', 'utf-8'),
     ) as IMission[];

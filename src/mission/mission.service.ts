@@ -47,7 +47,7 @@ export class MissionService {
       return {
         ...mission,
         durationDays,
-      }
-    })
+      };
+    });
   }
 }
